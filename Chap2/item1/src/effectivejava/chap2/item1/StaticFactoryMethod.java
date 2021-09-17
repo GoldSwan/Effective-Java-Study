@@ -1,11 +1,14 @@
 package effectivejava.chap2.item1;
 
+import java.util.ArrayList;
+
 public class StaticFactoryMethod {
 
 	public static class Item {
 		private String code = "";
 		private String name = "";
 		private String group = "";
+		
 		public Item () {
 			this.code = "defaultItem";
 			this.name = "defaultName";
@@ -23,7 +26,7 @@ public class StaticFactoryMethod {
 			Item.setCode(code);
 			Item.setName(name);
 			Item.setGroup(group);
-			return new Item();
+			return Item;
 		}
 		private void setCode(String Code) {
 			this.code = Code;
@@ -49,6 +52,8 @@ public class StaticFactoryMethod {
 		// TODO Auto-generated method stub
 		Item item1 = new Item("ITEM0001","과자","식품");
 		Item item2 = Item.valueOf("ITEM0002","맥주","음료");
+		System.out.println(item1.getCode());
+		System.out.println(item2.getCode());
 	}
 
 }
