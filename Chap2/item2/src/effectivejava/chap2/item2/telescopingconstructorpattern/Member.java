@@ -26,4 +26,8 @@ public class Member {
 		this.age = age;
 		this.grade = grade;		
 	}
+	
+	public String toString() {
+		return "{id : " + id + " ,name : "+name+" ,birth : "+birth+" ,age : "+age+" ,grade : "+grade+"}";
+	}
 }
