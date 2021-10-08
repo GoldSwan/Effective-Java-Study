@@ -8,7 +8,7 @@ public abstract class Coffee {
 	public enum Temperature {ICE, HOT}//온도(아이스, 핫)
 	public enum Bean {ETHIOPIA_YIRCHEFFE, GUATEMALA_ANTIGUA, BRAZIL_SANTOS};//원두(에티오피아 예가체프, 과테말라 안티구아, 브라질 산토스)
 	public enum Size {SHORT, TALL, GRANDE, VENTI}//사이즈
-	public enum Extra {SYRUP, LESS_ICE, MORE_ICE}//부재료(시럽,얼음적게,얼음많이)	
+	public enum Extra {LESS_ICE, MORE_ICE}//부재료(얼음적게,얼음많이)
 	private final Bean bean;//원두 필수
 	private final Temperature temperature;//온도 필수
 	private final Size size;//사이즈 필수
@@ -40,7 +40,8 @@ public abstract class Coffee {
 			return self();
 		}
 		
-		protected abstract T self();
+		abstract Coffee build();
+		protected abstract T self();	
 	}
 	
 	Coffee(Builder<?> builder){
@@ -50,4 +51,5 @@ public abstract class Coffee {
 		this.shot = builder.shot;
 		this.extras = builder.Extras.clone();
 	}
+	public abstract String toString();
 }
