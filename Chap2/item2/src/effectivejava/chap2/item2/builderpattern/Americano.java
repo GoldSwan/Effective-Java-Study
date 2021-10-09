@@ -1,5 +1,7 @@
 package effectivejava.chap2.item2.builderpattern;
 
+import java.util.*;
+
 public class Americano extends Coffee{
 	private final boolean syrupInside;//시럽 유무
 	
@@ -31,6 +33,28 @@ public class Americano extends Coffee{
 
 	@Override
 	public String toString() {
-		return null;
+		String strExtras = "";
+		StringBuilder sb = new StringBuilder();
+		Set<Extra> extras = super.getExtras();
+		
+		Iterator<Extra> iterator = extras.iterator();
+
+		while(iterator.hasNext()) {
+			sb.append(iterator.next().name()).append(" ,");
+		}
+		
+		if(sb.length()>0) {
+			strExtras = sb.deleteCharAt(sb.lastIndexOf(" "))
+					.deleteCharAt(sb.lastIndexOf(","))
+					.insert(0, "{")
+					.append("}")
+					.toString();
+		}
+		return "{bean : " + super.getBean().name() 
+				+ " ,temperature : "+ super.getTemperature().name()
+				+ " ,size : " + super.getSize().name()
+				+ " ,extras : " + strExtras
+				+ " ,syrupInside : " + this.syrupInside
+				+"}";
 	}
 }

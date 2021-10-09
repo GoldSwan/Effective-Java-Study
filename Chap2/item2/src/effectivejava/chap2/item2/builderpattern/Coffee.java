@@ -8,7 +8,7 @@ public abstract class Coffee {
 	public enum Temperature {ICE, HOT}//온도(아이스, 핫)
 	public enum Bean {ETHIOPIA_YIRCHEFFE, GUATEMALA_ANTIGUA, BRAZIL_SANTOS};//원두(에티오피아 예가체프, 과테말라 안티구아, 브라질 산토스)
 	public enum Size {SHORT, TALL, GRANDE, VENTI}//사이즈
-	public enum Extra {LESS_ICE, MORE_ICE}//부재료(얼음적게,얼음많이)
+	public enum Extra {LESS_ICE, MORE_ICE, LIGHT}//부재료(얼음적게,얼음많이, 연하게)
 	private final Bean bean;//원두 필수
 	private final Temperature temperature;//온도 필수
 	private final Size size;//사이즈 필수
@@ -22,7 +22,7 @@ public abstract class Coffee {
 		private final Size size;
 		//선택 매개변수
 		private int shot = 0;
-		EnumSet<Extra> Extras = EnumSet.noneOf(Extra.class);
+		EnumSet<Extra> extras = EnumSet.noneOf(Extra.class);
 		
 		public Builder (Bean bean, Temperature temperature, Size size) {
 			this.bean = bean;
@@ -36,7 +36,7 @@ public abstract class Coffee {
 		}
 		
 		public T addExtra(Extra extra) {
-			Extras.add(Objects.requireNonNull(extra));
+			extras.add(Objects.requireNonNull(extra));
 			return self();
 		}
 		
@@ -49,7 +49,28 @@ public abstract class Coffee {
 		this.temperature = builder.temperature;
 		this.size = builder.size;		
 		this.shot = builder.shot;
-		this.extras = builder.Extras.clone();
+		this.extras = builder.extras.clone();
 	}
+	
+	public Temperature getTemperature() {
+		return temperature;
+	}
+
+	public Bean getBean() {
+		return bean;
+	}
+
+	public Size getSize() {
+		return size;
+	}
+
+	public int getShot() {
+		return shot;
+	}
+
+	public Set<Extra> getExtras() {
+		return extras;
+	}
+	
 	public abstract String toString();
 }
