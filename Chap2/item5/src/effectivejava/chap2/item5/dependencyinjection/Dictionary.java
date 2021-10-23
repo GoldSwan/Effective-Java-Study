@@ -5,12 +5,12 @@ import java.util.*;
 public abstract class Dictionary {
 	private final Map<String, String> map;
 	
-	abstract class Builder<T extends Builder<T>>{
+	abstract static class Builder<T extends Builder<T>>{
 		
-		private final Map<String, String> map = new HashMap<>();
+		private Map<String, String> map = new HashMap<String, String>();
 		
-		public Builder() {
-			
+		public Builder(Map<String, String> map) {
+			this.map = map;
 		}
 		
 		public T addWord(String word, String meaning) {
