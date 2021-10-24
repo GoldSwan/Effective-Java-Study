@@ -1,13 +1,13 @@
 package effectivejava.chap2.item5.dependencyinjection;
 
 import java.util.*;
-
+//사전
 public abstract class Dictionary {
 	private final Map<String, String> map;
 	
 	abstract static class Builder<T extends Builder<T>>{
 		
-		private Map<String, String> map = new HashMap<String, String>();
+		private final Map<String, String> map;
 		
 		public Builder(Map<String, String> map) {
 			this.map = map;
