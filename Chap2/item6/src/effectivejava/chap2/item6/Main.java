@@ -1,5 +1,7 @@
 package effectivejava.chap2.item6;
 
+import java.util.*;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -88,6 +90,18 @@ public class Main {
 		}
 		else {
 			System.out.println("b3 == b4 false");
+		}
+		
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("A", "1");
+		map.put("B", "2");
+		map.put("C", "3");
+				
+		Set<String> keySet1 = map.keySet();
+		Set<String> keySet2 = map.keySet();
+		if(System.identityHashCode(keySet1) == System.identityHashCode(keySet2)){
+			//Map객체의 키를 전부담은 Set 뷰를 반환하는 keySet메서드를 호출할 때 마다 새로운 Set인스턴스가 생성되는게 아니라 동일한 Set 뷰를 반환하므로 keySet1와 keySet2은 동일한 객체이다.
+			System.out.println("keySet1 == keySet2 true");
 		}
 	}
 
